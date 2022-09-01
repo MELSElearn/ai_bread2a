@@ -40,150 +40,101 @@ function onResults(results) {
     }
   }
   canvasCtx.font = "15px Arial";
-  canvasCtx.fillText("Enter Your Age :" + agestr, 10, 40);
-  canvasCtx.fillText("Select range of salary : ", 10, 80);
-  canvasCtx.fillText(salarystr, 10, 100);
-  canvasCtx.fillText("Select your gender : ", 10, 130);
-  canvasCtx.fillText(genderstr, 10, 150);
+
+  canvasCtx.fillText("Enter Your Age :" + age, 10, 40);
+  canvasCtx.fillText("Select range of salary :"+salary, 10, 120);
+  canvasCtx.fillText("Select your gender :" + genderstr, 10, 200);
   canvasCtx.fillText("Press the button:", 10, 360);
   canvasCtx.fillText("Submit ", 200, 400);
-  if (clickcounter1 == 1)
-  {
-    canvasCtx.font = "15px Arial";
-    canvasCtx.fillText("1.Below 20", 230, 30);
-    canvasCtx.fillText("2.20-30", 230, 80);
-    canvasCtx.fillText("3.30-40", 230, 130);
-    canvasCtx.fillText("4.40 above", 230, 180);
-
-  }
-
-  if (clickcounter2 == 1)
-  {
-    canvasCtx.font = "15px Arial";
-    canvasCtx.fillText("1.Below 1000", 230, 30);
-    canvasCtx.fillText("2.1001-2000", 230, 80);
-    canvasCtx.fillText("3.2001-3000", 230, 130);
-    canvasCtx.fillText("4.3001-4000", 230, 180);
-    canvasCtx.fillText("5.4001 above", 230, 230);
-  }
-
-  if (clickcounter3 == 1)
-  {
-    canvasCtx.font = "15px Arial";
-    canvasCtx.fillText("1. 0 (Male) ", 230, 80);
-    canvasCtx.fillText("2. 1 （Female)", 230, 130);
-  }
+  canvasCtx.font = "30px Arial";
+  canvasCtx.fillText("+", 300, 40);
+  canvasCtx.fillText("-", 400, 40);
+  canvasCtx.fillText("+", 300, 130);
+  canvasCtx.fillText("-", 400, 130);
+  canvasCtx.fillText("M", 300, 210);
+  canvasCtx.fillText("F", 400, 210);
   canvasCtx.restore();
   
   let src = cv.imread('output_canvas');
 
   cv.rectangle(src, new cv.Point(0, 10), new cv.Point(220, 60), [255, 0, 0, 255], 4);
-  cv.rectangle(src, new cv.Point(0, 60), new cv.Point(220, 110), [255, 0, 0, 255], 4);
-  cv.rectangle(src, new cv.Point(0, 110), new cv.Point(220, 160), [255, 0, 0, 255], 4);
+  cv.rectangle(src, new cv.Point(0, 100), new cv.Point(220, 150), [255, 0, 0, 255], 4);
+  cv.rectangle(src, new cv.Point(0, 180), new cv.Point(220, 230), [255, 0, 0, 255], 4);
 
-  if (cx > 0 && cx < 220 && cy > 10 && cy<60 && counter ==0 && clickcounter1==0) 
+  
+  
+
+  if (cx > 280 && cx < 340 && cy > 10 && cy<60 && counter==1) 
   {
-    clickcounter1 = 1;
-    clickcounter2 = 0;
-    clickcounter3 = 0;
-  }else if (cx > 0 && cx < 220 && cy > 10 && cy<60 && counter ==0 && clickcounter1==1) 
+    age = age + 1;
+    if (age>99){
+      age = 99;
+    }
+    cv.rectangle(src, new cv.Point(280, 10), new cv.Point(340, 60), [0, 255, 0, 255], -1);
+  }else
   {
-    clickcounter1 = 0;
+	  cv.rectangle(src, new cv.Point(280, 10), new cv.Point(340, 60), [255, 0, 0, 255], 4);
+  }
+  
+  if (cx > 380 && cx < 440 && cy > 10 && cy<60 && counter==1)
+  {
+    age = age - 1;
+    if (age<0){
+      age = 0
+    }
+    cv.rectangle(src, new cv.Point(380, 10), new cv.Point(440, 60), [0, 255, 0, 255], -1); 
+  }else
+  {
+	  cv.rectangle(src, new cv.Point(380, 10), new cv.Point(440, 60), [255, 0, 0, 255], 4);
   }
 
-  if (cx > 0 && cx < 220 && cy > 60 && cy<110 && counter ==0 && clickcounter2==0) 
+
+
+  if (cx > 280 && cx < 340 && cy > 100 && cy<150 && counter==1) 
   {
-    clickcounter1 = 0;
-    clickcounter2 = 1;
-    clickcounter3 = 0;
-  }else if (cx > 2 && cx < 220 && cy > 60 && cy<110 && counter ==0 && clickcounter2==1) 
+    salary = salary + 100;
+    if (salary>10000){
+      salary = 10000;
+    }
+    cv.rectangle(src, new cv.Point(280, 100), new cv.Point(340, 150), [0, 255, 0, 255], -1);
+  }else
   {
-    clickcounter2 = 0;
+	  cv.rectangle(src, new cv.Point(280, 100), new cv.Point(340, 150), [255, 0, 0, 255], 4);
+  }
+  
+  if (cx > 380 && cx < 440 && cy > 100 && cy<150 && counter==1)
+  {
+    salary = salary - 100;
+    if (salary<0){
+      salary = 0
+    }
+    cv.rectangle(src, new cv.Point(380, 100), new cv.Point(440, 150), [0, 255, 0, 255], -1); 
+  }else
+  {
+	  cv.rectangle(src, new cv.Point(380, 100), new cv.Point(440, 150), [255, 0, 0, 255], 4);
   }
 
-  if (cx > 0 && cx < 220 && cy > 110 && cy<160 && counter ==0 && clickcounter3==0) 
+  if (cx > 280 && cx < 340 && cy > 180 && cy<230 && counter==1) 
   {
-    clickcounter1 = 0;
-    clickcounter2 = 0;
-    clickcounter3 = 1;
-  }else if (cx > 2 && cx < 220 && cy > 110 && cy<160 && counter ==0 && clickcounter3==1) 
+    gender = 0;
+    genderstr = "Male";
+    cv.rectangle(src, new cv.Point(280, 180), new cv.Point(340, 230), [0, 255, 0, 255], -1);
+  }else
   {
-    clickcounter3 = 0;
+	  cv.rectangle(src, new cv.Point(280, 180), new cv.Point(340, 230), [255, 0, 0, 255], 4);
+  }
+  
+  if (cx > 380 && cx < 440 && cy > 180 && cy<230 && counter==1)
+  {
+    gender = 1;
+    genderstr = "Female";
+    cv.rectangle(src, new cv.Point(380, 180), new cv.Point(440, 230), [0, 255, 0, 255], -1); 
+  }else
+  {
+	  cv.rectangle(src, new cv.Point(380, 180), new cv.Point(440, 230), [255, 0, 0, 255], 4);
   }
 
   
-
-  if (clickcounter1 == 1)
-  {
-    cv.rectangle(src, new cv.Point(220, 10), new cv.Point(340, 60), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 60), new cv.Point(340, 110), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 110), new cv.Point(340, 160), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 160), new cv.Point(340, 210), [255, 0, 0, 255], 4);
-    if (cx > 220 && cx < 340 && cy > 10 && cy<60 && counter ==0) 
-    {
-      age = 18;
-      agestr = "Below 20";
-    }else if (cx > 220 && cx < 340 && cy > 60 && cy<110 && counter ==0) 
-    {
-      age = 28;
-      agestr = "20-30";
-    }else if (cx > 220 && cx < 340 && cy > 110 && cy<160 && counter ==0) 
-    {
-      age = 38;
-      agestr = "30-40";
-    }else if (cx > 220 && cx < 340 && cy > 160 && cy<210 && counter ==0) 
-    {
-      age = 48;
-      agestr = "Above 40";
-    }
-  }
-
-  if (clickcounter2 == 1)
-  {
-    cv.rectangle(src, new cv.Point(220, 10), new cv.Point(340, 60), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 60), new cv.Point(340, 110), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 110), new cv.Point(340, 160), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 160), new cv.Point(340, 210), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 210), new cv.Point(340, 260), [255, 0, 0, 255], 4);
-
-    if (cx > 220 && cx < 340 && cy > 10 && cy<60 && counter ==0) 
-    {
-      salary = 500;
-      salarystr = "Below 1000";
-    }else if (cx > 220 && cx < 340 && cy > 60 && cy<110 && counter ==0) 
-    {
-      salary = 1500;
-      salarystr = "1001-2000";
-    }else if (cx > 220 && cx < 340 && cy > 110 && cy<160 && counter ==0) 
-    {
-      salary = 2500;
-      salarystr = "2001-3000";
-    }else if (cx > 220 && cx < 340 && cy > 160 && cy<210 && counter ==0) 
-    {
-      salary = 3500;
-      salarystr = "3001-4000";
-    }else if (cx > 220 && cx < 340 && cy > 210 && cy<260 && counter ==0) 
-    {
-      salary = 4500;
-      salarystr = "Above 4000";
-    }
-  }
-
-  if (clickcounter3 == 1)
-  {
-    cv.rectangle(src, new cv.Point(220, 60), new cv.Point(340, 110), [255, 0, 0, 255], 4);
-    cv.rectangle(src, new cv.Point(220, 110), new cv.Point(340, 160), [255, 0, 0, 255], 4);
-
-    if (cx > 220 && cx < 340 && cy > 60 && cy<110 && counter ==0) 
-    {
-      gender = 0
-      genderstr = "Male";
-    }else if (cx > 220 && cx < 340 && cy > 110 && cy<160 && counter ==0) 
-    {
-      gender = 1;
-      genderstr = "Female";
-    }
-  }
 
   if (cx > 180 && cx < 280 && cy > 350 && cy<450 && counter==0)
   {
